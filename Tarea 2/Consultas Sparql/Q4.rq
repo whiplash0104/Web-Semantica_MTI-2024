@@ -1,0 +1,10 @@
+PREFIX ms:   <http://example.org/multisolve#>
+
+SELECT ?technicianName (COUNT(DISTINCT ?so) AS ?ordersAssigned)
+WHERE {
+  ?so a ms:ServiceOrder ;
+      ms:hasTechnician ?tech .
+  ?tech ms:technicianName ?technicianName .
+}
+GROUP BY ?technicianName
+ORDER BY DESC(?ordersAssigned) ?technicianName

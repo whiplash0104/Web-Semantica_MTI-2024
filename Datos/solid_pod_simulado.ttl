@@ -1,0 +1,23 @@
+@prefix ex:   <http://example.org/pod#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix geo:  <http://example.org/chile-geo#> .
+
+ex:pod-cliente-001 a ex:PrivateProfile ;
+    ex:customerName "Cliente 1"@es ;
+    ex:contactEmail "cliente1@example.org" ;
+    ex:preferredContact "WhatsApp"@es ;
+    ex:street "Av. Principal"@es ;
+    ex:number "1234" ;
+    ex:locatedInComuna geo:comuna-13101 ;
+    ex:lastServiceDate "2026-01-05"^^xsd:date ;
+    ex:servicePreference "Gasfitería"@es .
+
+ex:pod-cliente-002 a ex:PrivateProfile ;
+    ex:customerName "Cliente 2"@es ;
+    ex:contactEmail "cliente2@example.org" ;
+    ex:preferredContact "Correo electrónico"@es ;
+    ex:street "Pasaje Central"@es ;
+    ex:number "456" ;
+    ex:locatedInComuna geo:comuna-13102 ;
+    ex:lastServiceDate "2026-01-07"^^xsd:date ;
+    ex:servicePreference "Electricidad"@es .

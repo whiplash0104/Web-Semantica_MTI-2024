@@ -1,0 +1,205 @@
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix schema: <https://schema.org/> .
+
+@prefix ms:   <http://example.org/multisolve#> .
+@prefix geo:  <http://example.org/chile-geo#> .
+
+# Clases básicas
+ms:ServiceOrder a rdfs:Class ;
+    rdfs:label "Orden de servicio"@es ;
+    rdfs:subClassOf schema:Order .
+
+ms:Customer a rdfs:Class ;
+    rdfs:label "Cliente"@es ;
+    rdfs:subClassOf schema:Organization .
+
+ms:Technician a rdfs:Class ;
+    rdfs:label "Técnico"@es ;
+    rdfs:subClassOf schema:Person .
+
+ms:ServiceType a rdfs:Class ;
+    rdfs:label "Tipo de servicio"@es ;
+    rdfs:subClassOf schema:Service .
+
+ms:Equipment a rdfs:Class ;
+    rdfs:label "Equipo"@es .
+
+ms:Location a rdfs:Class ;
+    rdfs:label "Domicilio"@es .
+
+# Propiedades de objeto
+ms:hasCustomer a rdf:Property ;
+    rdfs:domain ms:ServiceOrder ;
+    rdfs:range ms:Customer .
+
+ms:hasLocation a rdf:Property ;
+    rdfs:domain ms:ServiceOrder ;
+    rdfs:range ms:Location .
+
+ms:hasTechnician a rdf:Property ;
+    rdfs:domain ms:ServiceOrder ;
+    rdfs:range ms:Technician .
+
+ms:hasServiceType a rdf:Property ;
+    rdfs:domain ms:ServiceOrder ;
+    rdfs:range ms:ServiceType .
+
+ms:hasEquipment a rdf:Property ;
+    rdfs:domain ms:ServiceOrder ;
+    rdfs:range ms:Equipment .
+
+ms:installedAt a rdf:Property ;
+    rdfs:domain ms:Equipment ;
+    rdfs:range ms:Location .
+
+ms:locatedInComuna a rdf:Property ;
+    rdfs:domain ms:Location ;
+    rdfs:range geo:Comuna .
+
+# Propiedades de datos
+ms:orderId a rdf:Property ;
+    rdfs:domain ms:ServiceOrder ;
+    rdfs:range xsd:string .
+
+ms:creationDate a rdf:Property ;
+    rdfs:domain ms:ServiceOrder ;
+    rdfs:range xsd:date .
+
+ms:scheduledDate a rdf:Property ;
+    rdfs:domain ms:ServiceOrder ;
+    rdfs:range xsd:date .
+
+ms:closureDate a rdf:Property ;
+    rdfs:domain ms:ServiceOrder ;
+    rdfs:range xsd:date .
+
+ms:status a rdf:Property ;
+    rdfs:domain ms:ServiceOrder ;
+    rdfs:range xsd:string .
+
+ms:priority a rdf:Property ;
+    rdfs:domain ms:ServiceOrder ;
+    rdfs:range xsd:string .
+
+ms:description a rdf:Property ;
+    rdfs:domain ms:ServiceOrder ;
+    rdfs:range xsd:string .
+
+ms:customerName a rdf:Property ;
+    rdfs:domain ms:Customer ;
+    rdfs:range xsd:string .
+
+ms:technicianName a rdf:Property ;
+    rdfs:domain ms:Technician ;
+    rdfs:range xsd:string .
+
+ms:equipmentCode a rdf:Property ;
+    rdfs:domain ms:Equipment ;
+    rdfs:range xsd:string .
+
+ms:street a rdf:Property ;
+    rdfs:domain ms:Location ;
+    rdfs:range xsd:string .
+
+ms:number a rdf:Property ;
+    rdfs:domain ms:Location ;
+    rdfs:range xsd:string .
+
+ms:apartment a rdf:Property ;
+    rdfs:domain ms:Location ;
+    rdfs:range xsd:string .
+
+# Ejemplos de datos (sintéticos)
+
+# Cliente 1
+ms:customer001 a ms:Customer ;
+    ms:customerName "Cliente Ficticio 1"@es .
+
+# Domicilio 1
+ms:location001 a ms:Location ;
+    ms:street "Calle Ficticia"@es ;
+    ms:number "123" ;
+    ms:apartment "Depto 101" ;
+    ms:locatedInComuna geo:comuna-13101 .
+
+# Técnico 1
+ms:technician001 a ms:Technician ;
+    ms:technicianName "Técnico A"@es .
+
+# Tipo de servicio 1
+ms:serviceType-gasfit a ms:ServiceType ;
+    rdfs:label "Gasfitería"@es .
+
+# Equipo 1
+ms:equipment001 a ms:Equipment ;
+    ms:equipmentCode "EQUIP-001" ;
+    ms:installedAt ms:location001 .
+
+# Orden de servicio 1 (ABIERTA)
+ms:so-0001 a ms:ServiceOrder ;
+    ms:orderId "OS-0001" ;
+    ms:creationDate "2026-03-01"^^xsd:date ;
+    ms:scheduledDate "2026-03-03"^^xsd:date ;
+    ms:status "ABIERTA" ;
+    ms:priority "ALTA" ;
+    ms:description "Fuga de agua en baño principal"@es ;
+    ms:hasCustomer ms:customer001 ;
+    ms:hasLocation ms:location001 ;
+    ms:hasTechnician ms:technician001 ;
+    ms:hasServiceType ms:serviceType-gasfit ;
+    ms:hasEquipment ms:equipment001 .
+
+# Cliente 2
+ms:customer002 a ms:Customer ;
+    ms:customerName "Edificio Central S.A."@es .
+
+# Domicilio 2
+ms:location002 a ms:Location ;
+    ms:street "Avenida Providencia"@es ;
+    ms:number "456" ;
+    ms:locatedInComuna geo:comuna-13102 .
+
+# Técnico 2
+ms:technician002 a ms:Technician ;
+    ms:technicianName "Técnico B"@es .
+
+# Tipo de servicio 2
+ms:serviceType-electric a ms:ServiceType ;
+    rdfs:label "Electricidad"@es .
+
+# Equipo 2
+ms:equipment002 a ms:Equipment ;
+    ms:equipmentCode "EQUIP-002" ;
+    ms:installedAt ms:location002 .
+
+# Orden de servicio 2 (EN_CURSO)
+ms:so-0002 a ms:ServiceOrder ;
+    ms:orderId "OS-0002" ;
+    ms:creationDate "2026-02-15"^^xsd:date ;
+    ms:scheduledDate "2026-02-20"^^xsd:date ;
+    ms:status "EN_CURSO" ;
+    ms:priority "MEDIA" ;
+    ms:description "Revisión de tablero eléctrico"@es ;
+    ms:hasCustomer ms:customer002 ;
+    ms:hasLocation ms:location002 ;
+    ms:hasTechnician ms:technician002 ;
+    ms:hasServiceType ms:serviceType-electric ;
+    ms:hasEquipment ms:equipment002 .
+
+# Orden de servicio 3 (CERRADA)
+ms:so-0003 a ms:ServiceOrder ;
+    ms:orderId "OS-0003" ;
+    ms:creationDate "2026-01-10"^^xsd:date ;
+    ms:scheduledDate "2026-01-12"^^xsd:date ;
+    ms:closureDate "2026-01-12"^^xsd:date ;
+    ms:status "CERRADA" ;
+    ms:priority "BAJA" ;
+    ms:description "Mantención preventiva calefont"@es ;
+    ms:hasCustomer ms:customer001 ;
+    ms:hasLocation ms:location001 ;
+    ms:hasTechnician ms:technician001 ;
+    ms:hasTechnician ms:technician002 ;  # Orden con 2 técnicos
+    ms:hasServiceType ms:serviceType-gasfit .
+

@@ -1,0 +1,9 @@
+PREFIX ms:   <http://example.org/multisolve#>
+
+SELECT ?status (COUNT(?so) AS ?totalOrders)
+WHERE {
+  ?so a ms:ServiceOrder ;
+      ms:status ?status .
+}
+GROUP BY ?status
+ORDER BY DESC(?totalOrders) ?status

@@ -1,0 +1,16 @@
+PREFIX ms:   <http://example.org/multisolve#>
+PREFIX geo:  <http://example.org/chile-geo#>
+
+SELECT ?orderId ?status ?priority ?customerName ?comunaName
+WHERE {
+  ?so a ms:ServiceOrder ;
+      ms:orderId ?orderId ;
+      ms:status ?status ;
+      ms:priority ?priority ;
+      ms:hasCustomer ?customer ;
+      ms:hasLocation ?loc .
+  ?customer ms:customerName ?customerName .
+  ?loc ms:locatedInComuna ?comuna .
+  ?comuna geo:nombreComuna ?comunaName .
+}
+ORDER BY ?orderId

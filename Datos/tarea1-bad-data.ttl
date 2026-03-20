@@ -1,0 +1,24 @@
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix ms:   <http://example.org/multisolve#> .
+@prefix geo:  <http://example.org/chile-geo#> .
+
+# Orden de servicio con errores
+ms:so-bad-0001 a ms:ServiceOrder ;
+    ms:orderId "OS-9999" ;
+    # ms:creationDate falta (violación: property requerida)
+    ms:status "PENDIENTE" ;  # valor no permitido según ShEx
+    ms:priority "MUY_ALTA" ; # valor no permitido
+    ms:hasLocation ms:location-bad-001 ;
+    ms:hasTechnician ms:technician-bad-001 ;
+    ms:hasServiceType ms:serviceType-gasfit .
+
+# Técnico sin nombre
+ms:technician-bad-001 a ms:Technician .
+
+# Location que apunta a una comuna inexistente
+ms:location-bad-001 a ms:Location ;
+    ms:street "Calle Fantasma"@es ;
+    ms:number "999" ;
+    ms:locatedInComuna geo:comuna-99999 .  # no definida en tarea1-chile-geo-open.ttl
+

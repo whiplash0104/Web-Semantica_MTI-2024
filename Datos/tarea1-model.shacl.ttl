@@ -1,0 +1,59 @@
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+@prefix sh:   <http://www.w3.org/ns/shacl#> .
+
+@prefix ms:   <http://example.org/multisolve#> .
+@prefix geo:  <http://example.org/chile-geo#> .
+
+ms:ServiceOrderShape a sh:NodeShape ;
+    sh:targetClass ms:ServiceOrder ;
+
+    sh:property [
+        sh:path ms:orderId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+    ] ;
+
+    sh:property [
+        sh:path ms:creationDate ;
+        sh:datatype xsd:date ;
+        sh:minCount 1 ;
+    ] ;
+
+    sh:property [
+        sh:path ms:status ;
+        sh:in ( "ABIERTA" "EN_CURSO" "CERRADA" "CANCELADA" ) ;
+        sh:minCount 1 ;
+    ] ;
+
+    sh:property [
+        sh:path ms:priority ;
+        sh:in ( "BAJA" "MEDIA" "ALTA" ) ;
+        sh:minCount 1 ;
+    ] ;
+
+    sh:property [
+        sh:path ms:hasCustomer ;
+        sh:class ms:Customer ;
+        sh:minCount 1 ;
+    ] ;
+
+    sh:property [
+        sh:path ms:hasLocation ;
+        sh:class ms:Location ;
+        sh:minCount 1 ;
+    ] ;
+
+    sh:property [
+        sh:path ms:hasTechnician ;
+        sh:class ms:Technician ;
+        sh:minCount 1 ;
+    ] ;
+
+    sh:property [
+        sh:path ms:hasServiceType ;
+        sh:class ms:ServiceType ;
+        sh:minCount 1 ;
+    ] .
+

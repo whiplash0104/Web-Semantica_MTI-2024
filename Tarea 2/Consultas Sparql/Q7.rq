@@ -1,0 +1,12 @@
+PREFIX ms:   <http://example.org/multisolve#>
+
+SELECT ?customerName ?orderId ?creationDate ?scheduledDate
+WHERE {
+  ?so a ms:ServiceOrder ;
+      ms:orderId ?orderId ;
+      ms:creationDate ?creationDate ;
+      ms:hasCustomer ?customer .
+  ?customer ms:customerName ?customerName .
+  OPTIONAL { ?so ms:scheduledDate ?scheduledDate . }
+}
+ORDER BY ?creationDate

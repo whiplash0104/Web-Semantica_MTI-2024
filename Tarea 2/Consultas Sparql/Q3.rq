@@ -1,0 +1,11 @@
+PREFIX ms:   <http://example.org/multisolve#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?serviceTypeLabel (COUNT(?so) AS ?totalOrders)
+WHERE {
+  ?so a ms:ServiceOrder ;
+      ms:hasServiceType ?serviceType .
+  ?serviceType rdfs:label ?serviceTypeLabel .
+}
+GROUP BY ?serviceTypeLabel
+ORDER BY DESC(?totalOrders) ?serviceTypeLabel

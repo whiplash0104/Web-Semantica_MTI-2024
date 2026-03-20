@@ -1,0 +1,10 @@
+# Ejecutar directamente en https://query.wikidata.org/
+# Recupera entidades de Wikidata para las comunas usadas en el proyecto.
+SELECT ?comunaLabel ?item ?itemDescription
+WHERE {
+  VALUES ?comunaLabel { "Santiago"@es "Cerrillos"@es "Cerro Navia"@es }
+  ?item rdfs:label ?comunaLabel .
+  FILTER(LANG(?comunaLabel) = "es")
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "es,en". }
+}
+ORDER BY ?comunaLabel

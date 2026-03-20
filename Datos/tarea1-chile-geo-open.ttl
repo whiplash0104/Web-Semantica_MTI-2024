@@ -1,0 +1,32 @@
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:  <http://www.w3.org/2001/XMLSchema#> .
+
+@prefix geo:  <http://example.org/chile-geo#> .
+
+geo:Comuna a rdfs:Class ;
+    rdfs:label "Comuna de Chile"@es .
+
+geo:codigoComuna a rdf:Property ;
+    rdfs:domain geo:Comuna ;
+    rdfs:range xsd:string .
+
+geo:nombreComuna a rdf:Property ;
+    rdfs:domain geo:Comuna ;
+    rdfs:range xsd:string .
+
+# Ejemplos de comunas (basados en códigos y nombres reales, pero sin datos personales)
+# Fuente original: dataset de comunas de Chile en formato CSV.[web:5]
+
+geo:comuna-13101 a geo:Comuna ;
+    geo:codigoComuna "13101" ;
+    geo:nombreComuna "Santiago"@es .
+
+geo:comuna-13102 a geo:Comuna ;
+    geo:codigoComuna "13102" ;
+    geo:nombreComuna "Cerrillos"@es .
+
+geo:comuna-13103 a geo:Comuna ;
+    geo:codigoComuna "13103" ;
+    geo:nombreComuna "Cerro Navia"@es .
+

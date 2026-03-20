@@ -1,0 +1,12 @@
+PREFIX ms:   <http://example.org/multisolve#>
+PREFIX geo:  <http://example.org/chile-geo#>
+
+SELECT ?comunaName (COUNT(?so) AS ?totalOrders)
+WHERE {
+  ?so a ms:ServiceOrder ;
+      ms:hasLocation ?loc .
+  ?loc ms:locatedInComuna ?comuna .
+  ?comuna geo:nombreComuna ?comunaName .
+}
+GROUP BY ?comunaName
+ORDER BY DESC(?totalOrders) ?comunaName

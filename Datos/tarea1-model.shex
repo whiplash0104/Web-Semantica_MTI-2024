@@ -1,0 +1,64 @@
+PREFIX ms:   <http://example.org/multisolve#>
+PREFIX geo:  <http://example.org/chile-geo#>
+PREFIX xsd:  <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+
+# Shape para comuna
+<ComunaShape> {
+  a [ geo:Comuna ] ;
+  geo:codigoComuna xsd:string ;
+  geo:nombreComuna xsd:string
+}
+
+# Shape para Location (domicilio)
+<LocationShape> {
+  a [ ms:Location ] ;
+  ms:street xsd:string ;
+  ms:number xsd:string ;
+  ms:apartment xsd:string ? ;
+  ms:locatedInComuna @<ComunaShape>
+}
+
+# Shape para Cliente
+<CustomerShape> {
+  a [ ms:Customer ] ;
+  ms:customerName xsd:string
+}
+
+# Shape para Técnico
+<TechnicianShape> {
+  a [ ms:Technician ] ;
+  ms:technicianName .
+}
+
+# Shape para Tipo de servicio
+<ServiceTypeShape> {
+  a [ ms:ServiceType ] ;
+  rdfs:label xsd:string
+}
+
+# Shape para Equipo
+<EquipmentShape> {
+  a [ ms:Equipment ] ;
+  ms:equipmentCode xsd:string ;
+  ms:installedAt @<LocationShape>
+}
+
+# Shape principal para Orden de servicio
+<ServiceOrderShape> {
+  a [ ms:ServiceOrder ] ;
+  ms:orderId xsd:string ;
+  ms:creationDate xsd:date ;
+  ms:scheduledDate xsd:date ? ;
+  ms:closureDate xsd:date ? ;
+  ms:status [ "ABIERTA" "EN_CURSO" "CERRADA" "CANCELADA" ] ;
+  ms:priority [ "BAJA" "MEDIA" "ALTA" ] ;
+  ms:description xsd:string ? ;
+  ms:hasCustomer @<CustomerShape> ;
+  ms:hasLocation @<LocationShape> ;
+  ms:hasTechnician @<TechnicianShape>+ ;
+  ms:hasServiceType @<ServiceTypeShape> ;
+  ms:hasEquipment @<EquipmentShape>*
+}
+
