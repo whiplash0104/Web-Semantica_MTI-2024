@@ -6,7 +6,7 @@ Integrantes:
 * Igor Vega
 
 ## Tarea 1
-Para el desarrollo de la tarea 1, se utilizó
+Para el desarrollo de la tarea 1, los datos se crearon de forma local
 
 ## Tarea 2
 Para el desarrollo de la tarea 2, se utilizó https://rdfplayground.dcc.uchile.cl/ para consultas SPARQL y https://query.wikidata.org/ para la intergación con Wikidata (consulta de información de Comunas)
