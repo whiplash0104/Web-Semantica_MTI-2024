@@ -16,3 +16,6 @@ Se adjunta Jupyter book, este utiliza python 3.11.15 para su ejecución, es impo
 
 ## Tarea 4
 Se adjunta Jupyter book, este utiliza python 3.11.15 para su ejecución, es importante respetar el árbol de directorios para su correcta ejecución.
+
+## Videos: Presentación y Ejecución de Querys
+https://usmcl-my.sharepoint.com/:f:/g/personal/gmenesse_usm_cl/IgAgorjIOLNDSoPCwDxLCch7AdjTnsvbZ1slqnhcdm_B87A?e=VXjZoe
